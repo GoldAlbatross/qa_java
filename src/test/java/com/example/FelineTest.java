@@ -10,26 +10,32 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 @ExtendWith(MockitoExtension.class)
 public class FelineTest {
 
+    private static final String MEAT = "Мясо";
+    private static final String CHICKEN = "Курица";
+    private static final String FISH = "Рыба";
+    private static final String PREDATOR = "Хищник";
+    private static final String FAMILY_CATS = "Кошачьи";
     @Spy
-    Feline felineSpy;
+    private Feline felineSpy;
 
     @Test
     public void testEatMeat() throws Exception {
         // Ожидаемый результат
-        List<String> expectedFood = Arrays.asList("Мясо", "Курица", "Рыба");
+        List<String> expectedFood = Arrays.asList(MEAT, CHICKEN, FISH);
 
-        Mockito.doReturn(expectedFood).when(felineSpy).getFood("Хищник");
+        Mockito.doReturn(expectedFood).when(felineSpy).getFood(PREDATOR);
 
         List<String> actualFood = felineSpy.eatMeat();
         Assertions.assertEquals(expectedFood, actualFood);
     }
     @Test
     public void testGetFamily() {
-        Assertions.assertEquals("Кошачьи", felineSpy.getFamily());
+        Assertions.assertEquals(FAMILY_CATS, felineSpy.getFamily());
     }
     @Test
     public  void testGetKittens() {
@@ -39,5 +45,6 @@ public class FelineTest {
     public void  testGetKittensWithCount() {
         Assertions.assertEquals(5, felineSpy.getKittens(5));
     }
+
 
 }

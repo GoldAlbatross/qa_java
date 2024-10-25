@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class CatTest {
 
     @Mock
-    Feline feline;
+    private Feline feline;
 
     @Test
     public void testGetSound() {
