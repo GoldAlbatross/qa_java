@@ -20,6 +20,8 @@ public class FelineTest {
     private static final String FISH = "Рыба";
     private static final String PREDATOR = "Хищник";
     private static final String FAMILY_CATS = "Кошачьи";
+    private static final int NUMBER_OF_CATS_WITHOUT_COUNT = 1;
+    private static final int NUMBER_OF_CATS_WITH_COUNT = 5;
     @Spy
     private Feline felineSpy;
 
@@ -39,11 +41,11 @@ public class FelineTest {
     }
     @Test
     public  void testGetKittens() {
-        Assertions.assertEquals(1, felineSpy.getKittens());
+        Assertions.assertEquals(NUMBER_OF_CATS_WITHOUT_COUNT, felineSpy.getKittens());
     }
     @Test
     public void  testGetKittensWithCount() {
-        Assertions.assertEquals(5, felineSpy.getKittens(5));
+        Assertions.assertEquals(NUMBER_OF_CATS_WITH_COUNT, felineSpy.getKittens(NUMBER_OF_CATS_WITH_COUNT));
     }
 
 

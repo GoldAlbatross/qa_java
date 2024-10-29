@@ -17,13 +17,18 @@ import java.util.stream.Stream;
 @ExtendWith(MockitoExtension.class)
 public class LionTest {
 
+    private static final String MALE = "Самец";
+    private static final String FEMALE = "Самка";
+    private static final String PREDATOR = "";
+    private static final String NEUTRAL = "Нейтральный";
+    private static final int NUMBER_OF_CATS = 3;
     @Mock
     private Feline feline;
 
     static Stream<Object[]> data() {
         return Stream.of(new Object[][]{
-                {"Самец", true},
-                {"Самка", false}
+                {MALE, true},
+                {FEMALE, false}
         });
     }
 
@@ -36,24 +41,24 @@ public class LionTest {
     @Test
     public void testLionHasManeException() {
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
-            new Lion("Нейтральный", feline);
+            new Lion(NEUTRAL, feline);
         });
         Assertions.assertEquals("Используйте допустимые значения пола животного - самей или самка", exception.getMessage());
     }
     @Test
     public void testGetKittens() throws Exception {
-        Mockito.when(feline.getKittens()).thenReturn(3);
+        Mockito.when(feline.getKittens()).thenReturn(NUMBER_OF_CATS);
 
-        Lion lion = new Lion("Самец", feline);
+        Lion lion = new Lion(MALE, feline);
 
-        Assertions.assertEquals(3, lion.getKittens());
+        Assertions.assertEquals(NUMBER_OF_CATS, lion.getKittens());
     }
     @Test
     public void testGetFood() throws Exception {
         List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
-        Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
+        Mockito.when(feline.getFood(PREDATOR)).thenReturn(expectedFood);
 
-        Lion lion = new Lion("Самец", feline);
+        Lion lion = new Lion(MALE, feline);
 
         Assertions.assertEquals(expectedFood, lion.getFood());
     }

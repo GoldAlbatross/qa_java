@@ -10,13 +10,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class CatTest {
 
+    private static final String CAT_SOUND = "Мяу";
     @Mock
     private Feline feline;
 
     @Test
     public void testGetSound() {
         Cat cat = new Cat(feline);
-        Assertions.assertEquals("Мяу", cat.getSound());
+        Assertions.assertEquals(CAT_SOUND, cat.getSound());
     }
     @Test
     public void testGetFood() throws Exception {
